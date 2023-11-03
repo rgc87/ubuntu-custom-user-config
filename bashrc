@@ -119,6 +119,7 @@ fi
 ##### ##### ##### ##### ##### ##### ##### ##### ##### ##### ##### #####
 # Parse git branch
 ##### ##### ##### ##### ##### ##### ##### ##### ##### ##### ##### #####
+
 parse_git_branch() {
     local branch
     branch=$(git symbolic-ref --short -q HEAD 2>/dev/null)
@@ -136,4 +137,6 @@ parse_git_branch() {
     fi
 }
 # export PS1="\u@\h \[\033[32m\]\W\[\033[33m\]\$(parse_git_branch)\[\033[00m\]\n$ "
-export PS1="\[\033[35m\][\d \t]\[\033[00m\] [\u@\h] \[\033[32m📁 \W\]\$(parse_git_branch)\[\033[33m\]\[\033[00m\]\n$ "
+
+# Date and time colorized.
+export PS1="\[\033[35m\][\d \t]\[\033[00m\] [\u@\h] \[\033[32m📁 \W\]/ \$(parse_git_branch)\[\033[33m\]\[\033[00m\]\n$ "

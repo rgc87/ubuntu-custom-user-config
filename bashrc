@@ -119,41 +119,6 @@ fi
 ##### ##### ##### ##### ##### ##### ##### ##### ##### ##### ##### #####
 # Parse git branch
 ##### ##### ##### ##### ##### ##### ##### ##### ##### ##### ##### #####
-
-#parse_git_branch() {
-#     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-#}
-#export PS1="\u@\h \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
-
-
-# parse_git_branch() {
-#     local branch=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
-#     local changes=$(git status --porcelain 2> /dev/null)
-    
-#     if [ -n "$changes" ]; then
-#         echo -e " \033[0;31m(\u2716 $branch)\033[0m"
-#     else
-#         echo -e " \033[0;32m(\u2714 $branch)\033[0m"
-#     fi
-# }
-# export PS1="\u@\h \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
-
-
-# parse_git_branch() {
-#     local branch
-#     branch=$(git symbolic-ref --short -q HEAD 2>/dev/null)
-#     if [ -n "$branch" ]; then
-#         local changes=$(git status --porcelain)
-#         if [ -n "$changes" ]; then
-#             echo -e " \033[0;31m(\u2716 $branch)\033[0m"
-#         else
-#             echo -e " \033[0;32m(\u2714 $branch)\033[0m"
-#         fi
-#     fi
-# }
-# export PS1="\u@\h \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
-
-
 parse_git_branch() {
     local branch
     branch=$(git symbolic-ref --short -q HEAD 2>/dev/null)
@@ -171,9 +136,4 @@ parse_git_branch() {
     fi
 }
 # export PS1="\u@\h \[\033[32m\]\W\[\033[33m\]\$(parse_git_branch)\[\033[00m\]\n$ "
-
-# Show date and time
-# export PS1="\d \t \u@\h \[\033[32m\]\W\[\033[33m\]\$(parse_git_branch)\[\033[00m\]\n$ "
-
-# Date and time colorized.
 export PS1="\[\033[35m\][\d \t]\[\033[00m\] [\u@\h] \[\033[32m📁 \W\]\$(parse_git_branch)\[\033[33m\]\[\033[00m\]\n$ "
